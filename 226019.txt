@@ -1,0 +1,73 @@
+
+1. mkdir SI_2024_lab1_226019 (креирање локална датотека со исто име како remote репозиториумот)
+   cd SI_2024_lab1_226019/
+2. git init (иницијализација на локално репо)
+3. git remote add origin https://github.com/SretenGlavinceski/SI_2024_lab1_226019.git 
+(Поврзување на локалниот репозиториум со оддалечениот репозиториум)
+4. nano README.md (креирање README датотека со име, презиме, индекс)
+5. git add .
+   git commit -m "Initial commit"
+   (прв commit со порака "Initial commit"
+ - git status (проверка дали се извршени промените)
+6. Преземени се фајловите и поставени во истиот директориум SI_2024_lab1_226019
+    git add .
+    git commit -m "Add starter code"
+
+7. git push -u origin master (Синхронизација со оддалечениот репозиториум)
+8. Креирање две потребни гранки
+   git branch bug1
+   git branch bug2
+9. Префрлање на гранката bug1 и поправање на грешките во методот filterOddLengthStrings (во nano edior)
+   git checkout bug1
+   nano SILab1_1.java
+   git add SILab1_1.java
+   git commit -m "Fix wrong condition in filterOddLengthStrings"
+10. Префрлање на гранката bug2 и поправка на грешките во методот makeBigStringFrom (во nano editor) 
+    git checkout master
+    git checkout bug2
+    nano SILab1_2.java
+    git add .
+    git commit -m "Fix wrong condition in makeBigStringFrom"
+11. Префрлање на bug1, додавање на линијата код во SILab1Main.java и commit на промените
+    git checkout master
+    git checkout bug1
+    nano SILab1Main.java
+    git add .
+    git commit -m "Call method filterOddLengthStrings in main class"
+12. Префрлање на bug2, додавање на линијата код во SILab1Main.java и commit на промените
+    git checkout master
+    git checkout bug2
+    nano SILab1Main.java
+    git add . 
+    git commit -m "Call method makeBigStringFrom in main class"
+13. git push origin --all (синхронизација на промените со оддалечениот репозиториум)
+14. Префрлање на master гранката и спојување (merge) на гранката bug1 кон master (сите промени од bug1 се додаваат и во master)
+    git checkout master
+    git merge bug1
+15. git push --all (синхронизација со оддалечениот репозиториум)
+16. rebase на гранката bug2 кон master
+    git checkout bug2
+    git rebase master 
+    (настанува конфликт, на ист дел од кодот се повикани различни методи во гранките master и bug2,
+    рачно го средувам конфликтот во SILab1Main.java
+    со тоа што ги оставам двата методи едно по друго) 
+    - стратегија recursive merge
+    nano SILab1Main.java (промените во SILab1Main.java, двата методи едно по друго)
+    git add .
+    git rebase --continue (продолжи rebase)
+17. Префрлање кон master и спојување на bug2 со master
+    git checkout master 
+    git merge bug2 (merge со master, нема конфликт, Fast-forward)
+18. git push --all origin - синхронизација со оддалечено репо, настанува грешка - ! [rejected] bug2 -> bug2 (non-fast-forward), 
+    треба да се искористи force на гранката bug2
+    git push origin bug2 --force - присилно додавање на bug2
+19. Креирање датотека logs.txt и додавање на сите досегашни git логови
+    nano logs.txt
+    git log >> logs.txt
+    cat logs.txt (проверка)
+20. Креирање датотека 226019.txt за водење соодветна документација
+    nano 226019.txt
+21. комитирање на последните промени со порака Final commit, и синхронизација со оддалеченото репо
+    git add .
+    git commit -m "Final commit"
+    git push origin --all
